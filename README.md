@@ -1,5 +1,4 @@
 ![](https://github.com/jerry-D/IEEE-754-2008_ISA_CPU/blob/master/images/SYMPL_CPU_LOGO.png)
-
 ## IEEE 754-2008 Universal Fused Multiply-Add (FMA) 
 ### Double-Precision FLoating-Point Operator for Xilinx Kintex Ultra Family FPGAs
 
@@ -44,7 +43,6 @@ Rules:
 3) exactly 20 digits for fraction part
 4) there must be an upper or lower case “e” preceding exponent sign
 5) exactly 3 digits for exponent 
-
 ```
 Here is some example code written in a mix of SYMPL Intermediate Language (IL) and straight assembly language that computes 32, correctly rounded, binary64 formatted FMAs, with an apparent latency of only two clocks per computation, regardless of the format the operands are submitted in. Note that one of the above two clocks is used to initialize each C-register/accumulator.
 
@@ -52,7 +50,7 @@ Here is some example code written in a mix of SYMPL Intermediate Language (IL) a
     w4 AR0 = r4:#C_vect             ;load read pointer with location of source C vector
     w4 AR1 = r4:#C.0                ;load write pointer with location of first C-register/accumulator
        REPEAT, R1:#31               ;load repeat counter with number of extra times to execute the following instruction
-    w8	  *AR1++[1] = r8:*AR0++[8]	;initialize all 32 C-register/accumulators
+    w8	  *AR1++[1] = r8:*AR0++[8]	  ;initialize all 32 C-register/accumulators
 
     w4 AR2 = r4:#A_vect             ;load read pointer with location of source A vector
     w4 AR3 = r4:#B_vect             ;load read pointer with location of source B vector
@@ -60,13 +58,13 @@ Here is some example code written in a mix of SYMPL Intermediate Language (IL) a
        REPEAT, R1:#31               ;load repeat counter with number of extra times to execute the following instruction
     w32   *AR4++[1], r8:*AR2++[8], x32:AR3++[32]  ;push operandA and operandB into the pointed-to FMA input
 ```
-###Dot Product Example
+### Dot Product Example
 Here is some example code written in a mix of SYMPL Intermediate Language (IL) and straight assembly language that does dot product computations on quantity (32) vector pairs of 256 elements each, with an apparent latency of only one clock per computation:
 
 ```
             w4   AR1 = r4:#C.0                                ;load write pointer with location of first C-register/accumulator
                  REPEAT, R1:#31                               ;load repeat counter with number of extra times to execute the following instruction
-            w8   	  *AR1++[1] = r1:#0                       	;initialize all 32 C-register/accumulators to 0
+            w8   	  *AR1++[1] = r1:#0                       	 ;initialize all 32 C-register/accumulators to 0
 
             w4   AR2 = r4:#A_vect                             ;load read pointer with location of source A vector
             w4   AR3 = r4:#B_vect                             ;load read pointer with location of source B vector
