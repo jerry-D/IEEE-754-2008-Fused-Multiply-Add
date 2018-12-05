@@ -50,13 +50,13 @@ Here is some example code written in a mix of SYMPL Intermediate Language (IL) a
 ```
     w4 AR0 = r4:#C_vect             ;load read pointer with location of source C vector
     w4 AR1 = r4:#C.0                ;load write pointer with location of first C-register/accumulator
-       REPEAT, R1:#31               ;load repeat counter with number of extra times to execute the following instruction
+       REPEAT R1:#31                ;load repeat counter with number of extra times to execute the following instruction
     w8	  *AR1++[1] = r8:*AR0++[8]	  ;initialize all 32 C-register/accumulators
 
     w4 AR2 = r4:#A_vect             ;load read pointer with location of source A vector
     w4 AR3 = r4:#B_vect             ;load read pointer with location of source B vector
     w4 AR4 = r4:#FMA.0              ;load write pointer with location of first FMA input
-       REPEAT, R1:#31               ;load repeat counter with number of extra times to execute the following instruction
+       REPEAT  R1:#31               ;load repeat counter with number of extra times to execute the following instruction
     w32   *AR4++[1], r8:*AR2++[8], x32:AR3++[32]  ;push operandA and operandB into the pointed-to FMA input
 ```
 ### Dot Product Example
@@ -64,7 +64,7 @@ Here is some example code written in a mix of SYMPL Intermediate Language (IL) a
 
 ```
             w4   AR1 = r4:#C.0                                ;load write pointer with location of first C-register/accumulator
-                 REPEAT, R1:#31                               ;load repeat counter with number of extra times to execute the following instruction
+                 REPEAT R1:#31                                ;load repeat counter with number of extra times to execute the following instruction
             w8   	  *AR1++[1] = r1:#0                       	 ;initialize all 32 C-register/accumulators to 0
 
             w4   AR2 = r4:#A_vect                             ;load read pointer with location of source A vector
@@ -72,6 +72,6 @@ Here is some example code written in a mix of SYMPL Intermediate Language (IL) a
             
                  FOR (LPCNT0 = r2:#256) (                     ;load LPCNT0 with number of elements in each vector 
    loop:    w4      AR4 = r4:#FMA.0                           ;load write pointer with location of first FMA input
-                    REPEAT, R1:#31                            ;load repeat counter with number of extra times to execute the following instruction
+                    REPEAT  R1:#31                            ;load repeat counter with number of extra times to execute the following instruction
             w32        *AR4++[1], r8:*AR2++[8], x32:AR3++[32] ;push operandA and operandB into the pointed-to FMA input
                  NEXT LPCNT0 GOTO: loop )                     ;continue looping until LPCNT0 reaches 0
