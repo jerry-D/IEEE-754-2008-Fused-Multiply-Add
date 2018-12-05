@@ -40,7 +40,7 @@ Note that in the above examples this universal FMA operator can accept decimalCh
                                             e/E
 Rules:
 1) signs for both significand and exponent must be present
-2) exactly 21 digits for integer part with digit 21 never exceeding “1”
+2) exactly 21 digits for integer part with digit 21 (the far left one) never exceeding “1”
 3) exactly 20 digits for fraction part
 4) there must be an upper or lower case “e” preceding exponent sign
 5) exactly 3 digits for exponent 
