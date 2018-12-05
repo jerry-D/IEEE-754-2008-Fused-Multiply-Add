@@ -9,8 +9,9 @@ Stated another way, this universal FMA can directly perform double-precision ope
 
 It is fully pipelined and designed for ready incorporation into the new 64-bit, IEEE 754-2008 Floating-Point Instruction Set Architecture (ISA) CPU and Compute Units presently in development.
 
-Here is a link to the Universal Fused Multiply-Add Operator in .pdf format:
+Click on this link for a poster-sized block diagram of this Universal Fused Multiply-Add Operator in .pdf format (74 kb):
 
+https://github.com/jerry-D/IEEE-754-2008-Fused-Multiply-Add/blob/master/SYMPL_universalFMA_diagram.pdf
 
 This design features 32 result buffers and 32 “fat” C-register/accumulators results automatically spill into.  When used with the SYMPL ISA “Repeat” instruction, the effective/apparent latency is only one clock per computation, regardless of what format or combination of formats the operands are submitted in.  This is because by the time all 32 operandA-operandB pairs have been pushed into the operator, the result of the first push is already available for reading. 
 
