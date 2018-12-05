@@ -65,7 +65,7 @@ Here is some example code written in a mix of SYMPL Intermediate Language (IL) a
 ```
             w4   AR1 = r4:#C.0                                ;load write pointer with location of first C-register/accumulator
                  REPEAT R1:#31                                ;load repeat counter with number of extra times to execute the following instruction
-            w8   	  *AR1++[1] = r1:#0                       	 ;initialize all 32 C-register/accumulators to 0
+            w8   	  *AR1++[1] = r1:#0                         ;initialize all 32 C-register/accumulators to 0
 
             w4   AR2 = r4:#A_vect                             ;load read pointer with location of source A vector
             w4   AR3 = r4:#B_vect                             ;load read pointer with location of source B vector
