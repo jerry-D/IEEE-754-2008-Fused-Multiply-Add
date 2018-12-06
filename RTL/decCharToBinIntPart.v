@@ -2419,11 +2419,13 @@ assign R = intGTER && |intBinR_q21;
 wire S;
 wire [67:0] intBinSTest;
 wire intGTES;
+wire [66:0] intBinX;
 assign intBinSTest = intBinS - (IntWeight_q21 >> 55);
 assign intGTES = ~intBinSTest[67] || ~|intBinSTest; 
+assign intBinX = intGTES ? intBinSTest[66:0] : intBinS;  //remaining bits, if any
 assign S = intGTES && |intBinS;
 
-assign intGRS = {G_q21, R, S};
+assign intGRS = {G_q21, R, (S || |intBinX)};
 
 wire intInexact;
 assign intInexact = |intGRS;
