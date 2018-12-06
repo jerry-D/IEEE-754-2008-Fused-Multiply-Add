@@ -2420,11 +2420,13 @@ assign R = fractGTER && |fractBinR_q21;
 wire S;
 wire [67:0] fractBinSTest;
 wire fractGTES;
+wire [66:0] fractBinX;
 assign fractBinSTest = fractBinS - (FractWeight_q21 >> 55);
 assign fractGTES = ~fractBinSTest[67] || ~|fractBinSTest; 
+assign fractBinX = fractGTES ? fractBinSTest[66:0] : fractBinS;  //remaining bits, if any
 assign S = fractGTES && |fractBinS;
 
-assign fractGRS = {G_q21, R, S};
+assign fractGRS = {G_q21, R, (S || |fractBinX)};
 
 wire fractInexact;
 assign fractInexact = |fractGRS;
